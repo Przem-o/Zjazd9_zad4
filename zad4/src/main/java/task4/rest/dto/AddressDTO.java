@@ -1,9 +1,16 @@
 package task4.rest.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+@Data
+@Builder
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class AddressDTO {
 
@@ -16,19 +23,4 @@ public class AddressDTO {
     @NotNull(message="country can't be null")
     private String country;
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
 }

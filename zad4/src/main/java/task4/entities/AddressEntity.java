@@ -1,6 +1,14 @@
 package task4.entities;
 
+import jdk.jfr.DataAmount;
+import lombok.*;
+
 import javax.persistence.*;
+@Data
+@Builder
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 @Table(name = "address")
@@ -18,37 +26,4 @@ public class AddressEntity {
     @JoinColumn(name = "id")
     private ClientEntity clientEntity;
 
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public ClientEntity getClientEntity() {
-        return clientEntity;
-    }
-
-    public void setClientEntity(ClientEntity clientEntity) {
-        this.clientEntity = clientEntity;
-    }
 }

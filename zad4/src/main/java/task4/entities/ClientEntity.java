@@ -1,7 +1,14 @@
 package task4.entities;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Set;
+@Data
+@Builder
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 @Table(name = "client")
@@ -24,35 +31,5 @@ public class ClientEntity {
             inverseJoinColumns = @JoinColumn(name = "smartphone_id"))
     private Set<SmartphoneEntity> smartphoneEntities;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public AddressEntity getAddressEntity() {
-        return addressEntity;
-    }
-
-    public void setAddressEntity(AddressEntity addressEntity) {
-        this.addressEntity = addressEntity;
-    }
-
-    public Set<SmartphoneEntity> getSmartphoneEntities() {
-        return smartphoneEntities;
-    }
-
-    public void setSmartphoneEntities(Set<SmartphoneEntity> smartphoneEntities) {
-        this.smartphoneEntities = smartphoneEntities;
-    }
 }
