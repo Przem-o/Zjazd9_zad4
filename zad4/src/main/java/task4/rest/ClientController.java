@@ -9,6 +9,7 @@ import task4.services.ClientService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ClientController {
@@ -35,5 +36,15 @@ public class ClientController {
     public ResponseEntity deleteClient(@PathVariable(name = "id") Long id) {
         clientService.deleteClient(id);
         return ResponseEntity.ok().build();
+    }
+    @GetMapping("/employee/{id}")
+    public ResponseEntity getClientById(@PathVariable(name = "id") Long id) {
+        Optional<ClientDTO> getClientById = clientService.getClientById(id);
+        if (getClientById.isPresent()) {
+            return ResponseEntity.ok(getClientById.get());
+
+        }
+        return ResponseEntity.noContent().build();
+
     }
 }
