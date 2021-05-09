@@ -1,5 +1,6 @@
 package task4.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import task4.entities.ClientEntity;
 import task4.entities.SmartphoneEntity;
@@ -14,17 +15,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+@RequiredArgsConstructor
 @Service
 public class OrderService {
 
     private final ClientRepository clientRepository;
     private final SmartphoneRepository smartphoneRepository;
 
-    public OrderService(ClientRepository clientRepository, SmartphoneRepository smartphoneRepository) {
-        this.clientRepository = clientRepository;
-        this.smartphoneRepository = smartphoneRepository;
-    }
+//    public OrderService(ClientRepository clientRepository, SmartphoneRepository smartphoneRepository) {
+//        this.clientRepository = clientRepository;
+//        this.smartphoneRepository = smartphoneRepository;
+//    }
 
     public List<SmartphoneDTO> findOrderedSmartphones(Long clientId){
         Optional<ClientEntity> clientEntity = clientRepository.findById(clientId);

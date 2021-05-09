@@ -1,5 +1,6 @@
 package task4.services;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import task4.entities.AddressEntity;
@@ -11,15 +12,15 @@ import task4.util.EntityDtoMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@RequiredArgsConstructor
 @Service
 public class ClientService {
 
     private final ClientRepository clientRepository;
 
-    public ClientService(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
-    }
+//    public ClientService(ClientRepository clientRepository) {
+//        this.clientRepository = clientRepository;
+//    }
 
     public List<ClientDTO> findClients(String name) {
         return findClientsByName(name).stream()

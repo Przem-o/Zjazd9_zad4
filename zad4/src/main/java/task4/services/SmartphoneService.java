@@ -1,5 +1,6 @@
 package task4.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import task4.entities.SmartphoneEntity;
 import task4.repositories.SmartphoneRepository;
@@ -10,15 +11,15 @@ import task4.util.EntityDtoMapper;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+@RequiredArgsConstructor
 @Service
 public class SmartphoneService {
 
     private final SmartphoneRepository smartphoneRepository;
 
-    public SmartphoneService(SmartphoneRepository smartphoneRepository) {
-        this.smartphoneRepository = smartphoneRepository;
-    }
+//    public SmartphoneService(SmartphoneRepository smartphoneRepository) {
+//        this.smartphoneRepository = smartphoneRepository;
+//    }
 
     public List<SmartphoneDTO> getSmartphones(String model, String brand, Integer minPrice, Integer maxPrice) {
         return smartphoneRepository.findAll().stream()
