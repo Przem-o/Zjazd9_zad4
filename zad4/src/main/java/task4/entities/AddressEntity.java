@@ -5,7 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 @Data
-@Builder
+@Builder /// adnotacja do tworzenia obiektów za pomocą .builder.build  zamiast new Address...
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,8 +22,8 @@ public class AddressEntity {
     private String country;
 
     @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @MapsId // oznacza że wartosci klucza podstawowego zostaną skopiowane z klasy ClientEntity, w tej klasie nie ma pola id
+    @JoinColumn(name = "id") // ta adnotacje dajemy tylko po 1 stronie
     private ClientEntity clientEntity;
 
 }

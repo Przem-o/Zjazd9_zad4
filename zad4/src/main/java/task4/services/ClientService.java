@@ -29,21 +29,28 @@ public class ClientService {
 //    }
 
     public Optional<ClientDTO> getClientById(Long id) {
-        Optional<ClientDTO> client = clientCache.getClientResponse(id);
+        Optional<ClientDTO> client = clientCache.getClientResponse(id);// sprawdzanie czy jest w cache
         if(client.isPresent()){
-            return Optional.of(client.get());
+            return Optional.of(client.get());//jesli jest to uzywam tych danych z cacha
         }
         try {
             Thread.sleep(5000);
         }catch (InterruptedException interruptedException){}
-        ClientEntity clientEntity = clientRepository.findById(id).get();
+        ClientEntity clientEntity = clientRepository.findById(id).get();// jesli jest w cache to wyciagam go z bazy danych
         ClientDTO clientDTO = EntityDtoMapper.mapToDto(clientEntity);
-        clientCache.saveResponseInCache(clientDTO);
+        clientCache.saveResponseInCache(clientDTO);//  i zapisuje zeby przy nastepnym zapytaniu o te dane, mozna juz było pracowac z danymi z kesza
         return Optional.of(clientDTO);
     }
+//    public Optional<ClientDTO> getClientById(Long id) {
+//        Optional<ClientEntity> byId = clientRepository.findById(id);
+//        ClientEntity clientEntity = byId.get();
+//        ClientDTO clientDTO = EntityDtoMapper.mapToDto(clientEntity);
+//        return Optional.ofNullable(clientDTO);
+//
+//    }
 
     public List<ClientDTO> findClients(String name) {
-        return findClientsByName(name).stream()
+        return findClientsByName(name).stream() // mapowanie zamiana clientEntity z metody findClientsByName na DTO żeby użyć w controlerze
                 .map(EntityDtoMapper::mapToDto)
                 .collect(Collectors.toList());
     }
@@ -61,14 +68,15 @@ public class ClientService {
         AddressEntity addressEntity = EntityDtoMapper.mapToEntity(clientDTO.getAddress());
         clientEntity.setAddressEntity(addressEntity);
         addressEntity.setClientEntity(clientEntity);
-        ClientEntity save = clientRepository.save(clientEntity);
-        ClientDTO clientDTO1 = EntityDtoMapper.mapToDto(save);
-        clientCache.saveResponseInCache(clientDTO1);
+        ClientEntity save = clientRepository.save(clientEntity); // zapisanie w/w clienta z adresem
+        ClientDTO clientDTO1 = EntityDtoMapper.mapToDto(save);// zamiana sava na DTO
+        clientCache.saveResponseInCache(clientDTO1); // zapisanie clienta do cacha
         return EntityDtoMapper.mapToDto(save);
     }
 
-    public void deleteClient(Long id) {
+    public void deleteClient(Long id) { // usuwamy klienta z encji tutaj jest domyślnie clientEntity
         clientRepository.deleteById(id);
+        clientCache.deleteClientResponseFromCache(id);// usuwanie z cache
     }
 
 }

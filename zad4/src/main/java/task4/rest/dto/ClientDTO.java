@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 public class ClientDTO {
 
-    @Schema(description = "id of existing client", example = "1")
+    @Schema(description = "id of existing client", example = "1") // @Schema adnotacje od swaggera
     private Long id;
     @Schema(description = "client name", example = "Jaro",required = true)
     @NotBlank(message="name can't be blank")

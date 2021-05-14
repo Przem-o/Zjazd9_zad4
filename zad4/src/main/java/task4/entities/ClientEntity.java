@@ -21,7 +21,7 @@ public class ClientEntity {
     private String name;
 
     @OneToOne(mappedBy = "clientEntity", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @PrimaryKeyJoinColumn//
     private AddressEntity addressEntity;
 
     @ManyToMany
@@ -30,6 +30,7 @@ public class ClientEntity {
             joinColumns = @JoinColumn(name = "client_id"),
             inverseJoinColumns = @JoinColumn(name = "smartphone_id"))
     private Set<SmartphoneEntity> smartphoneEntities;
+
 
 
 }

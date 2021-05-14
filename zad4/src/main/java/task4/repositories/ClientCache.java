@@ -15,6 +15,7 @@ public class ClientCache {
     public ClientDTO saveResponseInCache(ClientDTO clientDTO) {
         return clientDTO;
     }
+
     @Cacheable(key = "#id", cacheManager = CacheConfig.CLIENT_RESPONSE_CACHE_MANAGER, cacheNames = CacheConfig.CLIENT_RESPONSE_CACHE_NAME)
     public Optional<ClientDTO> getClientResponse(Long id) {
         return Optional.empty();

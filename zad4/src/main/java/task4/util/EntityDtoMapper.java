@@ -13,13 +13,16 @@ import task4.rest.dto.SmartphoneDTO;
 public class EntityDtoMapper {
 
     public static ClientDTO mapToDto(ClientEntity clientEntity) {
-        //ClientDTO clientDTO = new ClientDTO();
-        ClientDTO clientDTO = ClientDTO.builder().build();
-        BeanUtils.copyProperties(clientEntity, clientDTO);
-        clientDTO.setAddress(EntityDtoMapper.mapToDto(clientEntity.getAddressEntity()));
+        ClientDTO clientDTO = new ClientDTO();
+//        ClientDTO clientDTO = ClientDTO.builder().build();
+//        clientDTO.setId(clientDTO.getId());  //
+//        clientDTO.setName(clientDTO.getName()); // zamiast tych 2 wierszy jest jedna poniższa metoda BeanUtils.copyProperties
+        BeanUtils.copyProperties(clientEntity, clientDTO); // metoda kopiuje ze źródła (clientEntity) wartosci pól do drugiego argumentu metody, obiektów nie kopiue trzeba wywołać poniższe)
+        if(clientEntity.getAddressEntity()!=null) {  // if dlatego że nie każdy klient ma adres i powstaje błąd
+            clientDTO.setAddress(EntityDtoMapper.mapToDto(clientEntity.getAddressEntity()));
+        }
         return clientDTO;
     }
-
     public static ClientEntity mapToEntity(ClientDTO clientDTO) {
         //ClientEntity clientEntity = new ClientEntity();
         ClientEntity clientEntity = ClientEntity.builder().build();

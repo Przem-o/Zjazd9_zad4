@@ -25,7 +25,7 @@ public class ClientController {
     public List<ClientDTO> getClients(@RequestParam(name = "name", required = false) String name) {
         return clientService.findClients(name);
     }
-    @Operation(description = "Add new client") // + adnotacja @Valid
+    @Operation(description = "Add new client") // + adnotacja @Operation i @Valid ze swaggera
     @PostMapping("/client")
     public ClientDTO addClient(@Valid @RequestBody ClientDTO clientDTO) {
         return clientService.addClient(clientDTO);
@@ -37,14 +37,15 @@ public class ClientController {
         clientService.deleteClient(id);
         return ResponseEntity.ok().build();
     }
-    @GetMapping("/employee/{id}")
+    @Operation(description = "find client by id")
+    @GetMapping("/client/{id}")
     public ResponseEntity getClientById(@PathVariable(name = "id") Long id) {
         Optional<ClientDTO> getClientById = clientService.getClientById(id);
         if (getClientById.isPresent()) {
             return ResponseEntity.ok(getClientById.get());
 
         }
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.noContent().build();// http no content 204
 
     }
 }

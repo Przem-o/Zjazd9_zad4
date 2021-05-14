@@ -16,7 +16,8 @@ import java.util.stream.Collectors;
 public class SmartphoneService {
 
     private final SmartphoneRepository smartphoneRepository;
-
+//    private final SmartphoneCache
+//
 //    public SmartphoneService(SmartphoneRepository smartphoneRepository) {
 //        this.smartphoneRepository = smartphoneRepository;
 //    }
@@ -34,6 +35,7 @@ public class SmartphoneService {
     public SmartphoneDTO addSmartphone(SmartphoneDTO smartphoneDTO) {
         SmartphoneEntity smartphoneEntity = EntityDtoMapper.mapToEntity(smartphoneDTO);
         SmartphoneEntity save = smartphoneRepository.save(smartphoneEntity);
+
         return EntityDtoMapper.mapToDto(save);
     }
 
@@ -41,6 +43,7 @@ public class SmartphoneService {
         Optional<SmartphoneEntity> smartphoneEntity = smartphoneRepository.findById(id);
         if(smartphoneEntity.isPresent()) {
             SmartphoneEntity smartphone = smartphoneEntity.get();
+            //smartphoneEntity.get().setName(smartphoneDTO.getName()); opcja
             smartphone.setName(smartphoneDTO.getName());
             smartphone.setModel(smartphoneDTO.getModel());
             smartphone.setPrice(smartphoneDTO.getPrice());
