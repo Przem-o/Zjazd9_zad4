@@ -11,15 +11,21 @@ import java.util.Optional;
 @Repository
 public class ClientCache {
 
-    @CachePut(key = "#clientDTO.id", cacheManager = CacheConfig.CLIENT_RESPONSE_CACHE_MANAGER, cacheNames = CacheConfig.CLIENT_RESPONSE_CACHE_NAME)
+    // służy do zapisywania danych do cache oraz  pod jaki kluczem ma to byc zapisane #clientDTO.id gdzie id to nazwa pola z obiektu
+
+    @CachePut(key = "#clientDTO.id", cacheManager = CacheConfig.CLIENT_RESPONSE_CACHE_MANAGER, cacheNames = CacheConfig.CLIENT_RESPONSE_CACHE_NAME) // manager i name z pola klasy configCache
     public ClientDTO saveResponseInCache(ClientDTO clientDTO) {
         return clientDTO;
     }
+    // służy do wyciągania z danych z cache po id wczesniej ustalonym wyzej przy dodawaniu
 
     @Cacheable(key = "#id", cacheManager = CacheConfig.CLIENT_RESPONSE_CACHE_MANAGER, cacheNames = CacheConfig.CLIENT_RESPONSE_CACHE_NAME)
     public Optional<ClientDTO> getClientResponse(Long id) {
         return Optional.empty();
     }
+
+    //usuwanie danych z cache
+
     @CacheEvict(key = "#id", cacheManager = CacheConfig.CLIENT_RESPONSE_CACHE_MANAGER, cacheNames = CacheConfig.CLIENT_RESPONSE_CACHE_NAME)
     public void deleteClientResponseFromCache(Long id) {
     }

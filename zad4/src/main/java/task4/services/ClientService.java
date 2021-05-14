@@ -68,10 +68,10 @@ public class ClientService {
         AddressEntity addressEntity = EntityDtoMapper.mapToEntity(clientDTO.getAddress());
         clientEntity.setAddressEntity(addressEntity);
         addressEntity.setClientEntity(clientEntity);
-        ClientEntity save = clientRepository.save(clientEntity); // zapisanie w/w clienta z adresem
-        ClientDTO clientDTO1 = EntityDtoMapper.mapToDto(save);// zamiana sava na DTO
-        clientCache.saveResponseInCache(clientDTO1); // zapisanie clienta do cacha
-        return EntityDtoMapper.mapToDto(save);
+        ClientEntity saveClient = clientRepository.save(clientEntity); // zapisanie w/w clienta z adresem
+        ClientDTO clientDTO1 = EntityDtoMapper.mapToDto(saveClient);// zamiana mapowanie klienta (sava) na DTO
+        clientCache.saveResponseInCache(clientDTO1); // zapisanie clienta do cacha, w cache zapisujemy to co trafiło do bazy danych
+        return EntityDtoMapper.mapToDto(saveClient);
     }
 
     public void deleteClient(Long id) { // usuwamy klienta z encji tutaj jest domyślnie clientEntity

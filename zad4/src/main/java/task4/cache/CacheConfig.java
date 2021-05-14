@@ -15,8 +15,8 @@ import java.util.concurrent.TimeUnit;
 @EnableCaching
 public class CacheConfig {
 
-    public static final String CLIENT_RESPONSE_CACHE_MANAGER = "clientResponseCacheManager";
-    public static final String CLIENT_RESPONSE_CACHE_NAME = "clientResponseCache";
+    public static final String CLIENT_RESPONSE_CACHE_MANAGER = "clientResponseCacheManager";//client + Respons...
+    public static final String CLIENT_RESPONSE_CACHE_NAME = "clientResponseCache"; //client + Respons...
 
     @Primary
     @Bean(CLIENT_RESPONSE_CACHE_MANAGER)
