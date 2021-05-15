@@ -1,4 +1,4 @@
-package task4.cache;
+package task4.config.cache;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.cache.CacheManager;

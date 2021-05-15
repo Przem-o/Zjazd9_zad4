@@ -4,7 +4,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
-import task4.cache.CacheConfig;
+import task4.config.cache.CacheConfig;
 import task4.rest.dto.ClientDTO;
 
 import java.util.Optional;
