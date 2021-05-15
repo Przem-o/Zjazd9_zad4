@@ -32,7 +32,7 @@ public class SmartphoneController {
                                               @RequestParam(name = "maxPrice", required = false) Integer maxPrice) {
         return smartphoneService.getSmartphones(model, brand, minPrice, maxPrice);
     }
-    @PreAuthorize("hasRole('" + ADMIN_ROLE +"') || hasRole('" + MANAGER_ROLE +"'")
+    @PreAuthorize("hasRole('" + ADMIN_ROLE +"') || hasRole('" + MANAGER_ROLE +"')")
     @Operation(description = "Add new smartphone")
     @PostMapping("/smartphone")
     public SmartphoneDTO addSmartphone(@Valid @RequestBody SmartphoneDTO smartphoneDTO) {

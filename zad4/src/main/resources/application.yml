@@ -12,3 +12,8 @@ server:
   error:
     include-message: always
     include-binding-errors: always
+cache:
+  smartphone:
+    ttl: 30
+  client:
+    ttl: 30

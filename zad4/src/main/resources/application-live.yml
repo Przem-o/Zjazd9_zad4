@@ -1,0 +1,5 @@
+cache:
+  smartphone:
+    ttl: 30
+  client:
+    ttl: 30
