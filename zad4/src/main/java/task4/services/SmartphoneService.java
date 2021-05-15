@@ -3,6 +3,7 @@ package task4.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import task4.entities.SmartphoneEntity;
+import task4.repositories.SmartphoneCache;
 import task4.repositories.SmartphoneRepository;
 import task4.rest.dto.SmartphoneDTO;
 import task4.util.EntityDtoMapper;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 public class SmartphoneService {
 
     private final SmartphoneRepository smartphoneRepository;
-//    private final SmartphoneCache
+    private final SmartphoneCache smartphoneCache;
 //
 //    public SmartphoneService(SmartphoneRepository smartphoneRepository) {
 //        this.smartphoneRepository = smartphoneRepository;

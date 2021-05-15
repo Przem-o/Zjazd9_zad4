@@ -17,14 +17,24 @@ public class CacheConfig {
 
     public static final String CLIENT_RESPONSE_CACHE_MANAGER = "clientResponseCacheManager";//client + Respons...
     public static final String CLIENT_RESPONSE_CACHE_NAME = "clientResponseCache"; //client + Respons...
+    public static final String SMARTPHONE_RESPONSE_CACHE_MANAGER = "smartphoneResponseCacheManager";
+    public static final String SMARTPHONE_RESPONSE_CACHE_NAME = "smartphoneResponseCache";
 
     @Primary
     @Bean(CLIENT_RESPONSE_CACHE_MANAGER)
-    public CacheManager cacheManager() {
+    public CacheManager cacheManagerClient() {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager();
         Caffeine<Object, Object> caffeine = Caffeine.newBuilder().expireAfterWrite(2, TimeUnit.MINUTES);
         cacheManager.setCaffeine(caffeine);
         cacheManager.setCacheNames(Collections.singleton(CLIENT_RESPONSE_CACHE_NAME));
+        return cacheManager;
+    }
+    @Bean(SMARTPHONE_RESPONSE_CACHE_MANAGER)
+    public CacheManager cacheManagerSmartphone() {
+        CaffeineCacheManager cacheManager = new CaffeineCacheManager();
+        Caffeine<Object, Object> caffeine = Caffeine.newBuilder().expireAfterWrite(2, TimeUnit.MINUTES);
+        cacheManager.setCaffeine(caffeine);
+        cacheManager.setCacheNames(Collections.singleton(SMARTPHONE_RESPONSE_CACHE_NAME));
         return cacheManager;
     }
 }

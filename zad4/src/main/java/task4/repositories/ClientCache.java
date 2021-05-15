@@ -24,7 +24,7 @@ public class ClientCache {
         return Optional.empty();
     }
 
-    //usuwanie danych z cache
+    //usuwanie danych z cache z podanego klucza
 
     @CacheEvict(key = "#id", cacheManager = CacheConfig.CLIENT_RESPONSE_CACHE_MANAGER, cacheNames = CacheConfig.CLIENT_RESPONSE_CACHE_NAME)
     public void deleteClientResponseFromCache(Long id) {

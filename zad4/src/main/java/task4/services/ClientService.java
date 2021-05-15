@@ -55,7 +55,7 @@ public class ClientService {
                 .collect(Collectors.toList());
     }
 
-    private List<ClientEntity> findClientsByName(String name) {
+    private List<ClientEntity> findClientsByName(String name) { // metoda pomocnicza do w/w
         if (StringUtils.isBlank(name)) {
             return clientRepository.findAll();
         } else {
