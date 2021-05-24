@@ -17,6 +17,7 @@ public class ClientCache {
     public ClientDTO saveResponseInCache(ClientDTO clientDTO) {
         return clientDTO;
     }
+
     // służy do wyciągania z danych z cache po id wczesniej ustalonym wyzej przy dodawaniu
 
     @Cacheable(key = "#id", cacheManager = CacheConfig.CLIENT_RESPONSE_CACHE_MANAGER, cacheNames = CacheConfig.CLIENT_RESPONSE_CACHE_NAME)
